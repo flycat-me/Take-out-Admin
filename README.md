@@ -1,4 +1,4 @@
-# adminmange
+# Take-out-Admin
 
 ## Project setup
 ```
