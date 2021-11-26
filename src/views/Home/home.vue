@@ -1,13 +1,13 @@
 <template>
   <el-container>
-    <el-aside width="200px">
-      <div class="logo"></div>
+    <el-aside width="300px">
+      <div class="logo">后台管理系统</div>
       <el-menu
         default-active="2"
         class="el-menu-vertical-demo"
         @open="handleOpen"
         @close="handleClose"
-        background-color="#545c64"
+        background-color="#334157"
         text-color="#fff"
         active-text-color="#ffd04b"
       >
@@ -47,8 +47,17 @@
       <el-header>
         <el-page-header @back="goBack" content="详情页面"> </el-page-header>
       </el-header>
-      <el-main>Main</el-main>
-      <el-footer>Footer</el-footer>
+      <el-main>
+        <div class="mainBody">
+          <el-table :data="tableData" style="width: 100%">
+          <el-table-column prop="date" label="日期" width="180">
+          </el-table-column>
+          <el-table-column prop="name" label="姓名" width="180">
+          </el-table-column>
+          <el-table-column prop="address" label="地址"> </el-table-column>
+        </el-table>
+        </div>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -59,40 +68,44 @@ export default {};
 
 <style>
 .logo {
+  width: 300px;
   height: 60px;
-  background: #333;
-}
-.header {
-  height: 100%;
-}
-.aside {
-  height: 640px;
-  background: black;
-}
-.footer {
-  background: green;
+  background: #17b3a3;
+  font-size: 22px;
+  line-height: 60px;
+  color: white;
+  font-weight: bolder;
 }
 
-.el-header,
-.el-footer {
-  background-color: #b3c0d1;
+.el-header {
+  background-color: #263238;
   color: #333;
   text-align: center;
   line-height: 60px;
+  border-left-width: 1px;
+  border-left-color: #e9eef3;
+  border-left-style: solid;
+  color: white;
+}
+.el-page-header {
+  margin-left: 300px;
 }
 
 .el-aside {
-  background-color: #d3dce6;
+  background-color: #263238;
   color: #333;
   text-align: center;
   line-height: 200px;
+  height: 100%;
+  position: absolute;
 }
 
 .el-main {
-  background-color: #e9eef3;
-  color: #333;
-  text-align: center;
-  line-height: 160px;
+  background-color: white;
+  height: 100%;
+  color: black;
+  width: 1236px;
+  margin-left: 300px;
 }
 
 body > .el-container {
@@ -106,5 +119,12 @@ body > .el-container {
 
 .el-container:nth-child(7) .el-aside {
   line-height: 320px;
+}
+.el-page-header {
+  display: flex;
+  line-height: 60px;
+}
+.mainBody{
+
 }
 </style>
