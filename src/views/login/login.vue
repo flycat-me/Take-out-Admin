@@ -3,35 +3,6 @@
     <div id="login">
       <h2 class="loginbox-title">外卖点餐后台管理系统</h2>
       <div class="g-bd">
-        <!-- <el-form
-          :label-position="labelPosition"
-          label-width="80px"
-          :model="userForm"
-          :rules="loginRules"
-          ref="userForm"
-        >
-          <el-form-item label="">
-            <el-input
-              type="text"
-              prefix-icon="el-icon-user"
-              v-model="userForm.name"
-              prop="name"
-              placeholder="请输入用户名"
-            ></el-input>
-          </el-form-item>
-          <el-form-item label="">
-            <el-input
-              type="password"
-              prefix-icon="el-icon-lock"
-              v-model="userForm.password"
-              prop="password"
-              placeholder="请输入密码"
-            ></el-input>
-          </el-form-item>
-          <el-button type="primary" @click="submitForm('userForm')"
-            >主要按钮</el-button
-          >
-        </el-form> -->
         <el-form
           :model="loginForm"
           :rules="loginrules"
