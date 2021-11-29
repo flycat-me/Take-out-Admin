@@ -1,94 +1,112 @@
 <template>
   <el-container>
-    <el-aside width="300px">
-      <div class="logo">后台管理系统</div>
-      <el-menu
-        default-active="2"
-        class="el-menu-vertical-demo"
-        @open="handleOpen"
-        @close="handleClose"
-        background-color="#334157"
-        text-color="#fff"
-        active-text-color="#ffd04b"
-      >
-        <el-submenu index="1">
-          <template slot="title">
-            <i class="el-icon-location"></i>
-            <span>导航一</span>
-          </template>
-          <el-menu-item-group>
-            <template slot="title">分组一</template>
-            <el-menu-item index="1-1">选项1</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="分组2">
-            <el-menu-item index="1-3">选项3</el-menu-item>
-          </el-menu-item-group>
-          <el-submenu index="1-4">
-            <template slot="title">选项4</template>
-            <el-menu-item index="1-4-1">选项1</el-menu-item>
-          </el-submenu>
-        </el-submenu>
-        <el-menu-item index="2">
-          <i class="el-icon-menu"></i>
-          <span slot="title">导航二</span>
-        </el-menu-item>
-        <el-menu-item index="3" disabled>
-          <i class="el-icon-document"></i>
-          <span slot="title">导航三</span>
-        </el-menu-item>
-        <el-menu-item index="4">
-          <i class="el-icon-setting"></i>
-          <span slot="title">导航四</span>
-        </el-menu-item>
-      </el-menu>
-    </el-aside>
-    <el-container>
-      <el-header>
-        <el-page-header @back="goBack" content="详情页面"> </el-page-header>
-      </el-header>
-      <el-main>
-        <div class="mainBody">
-          <el-table :data="tableData" style="width: 100%">
-          <el-table-column prop="date" label="日期" width="180">
-          </el-table-column>
-          <el-table-column prop="name" label="姓名" width="180">
-          </el-table-column>
-          <el-table-column prop="address" label="地址"> </el-table-column>
-        </el-table>
+    <el-header>
+      <div style="height: 60px; line-height: 60px; display: flex">
+        <div class="logo">后台管理</div>
+        <div style="flex: 1"></div>
+        <div style="width: 100px">
+          <el-dropdown>
+            <span class="el-dropdown-link">
+              <el-avatar
+                :size="30"
+                :src="user.avatar"
+                style="position: relative; top: 10px"
+              ></el-avatar>
+              {{ user.nickName }}
+              <i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item @click="$router.push('/person')"
+                  >个人信息</el-dropdown-item
+                >
+                <el-dropdown-item @click="$router.push('/login')"
+                  >退出系统</el-dropdown-item
+                >
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
         </div>
+      </div>
+    </el-header>
+    <el-container>
+      <el-aside width="200px">
+        <el-menu
+          default-active="2"
+          class="el-menu-vertical-demo"
+          background-color="#334157"
+          text-color="#fff"
+          active-text-color="#ffd04b"
+          router
+        >
+          <el-menu-item index="1">
+            <i class="el-icon-menu"></i>
+            <span slot="title">导航一</span>
+          </el-menu-item>
+          <el-menu-item index="home/test">
+            <i class="el-icon-menu"></i>
+            <span slot="title">导航二</span>
+          </el-menu-item>
+          <el-menu-item index="3" disabled>
+            <i class="el-icon-document"></i>
+            <span slot="title">导航三</span>
+          </el-menu-item>
+          <el-menu-item index="4">
+            <i class="el-icon-setting"></i>
+            <span slot="title">导航四</span>
+          </el-menu-item>
+        </el-menu>
+      </el-aside>
+      <el-main>
+        <router-view />
       </el-main>
     </el-container>
   </el-container>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    this.chartSettings = {};
+    return {
+      chartData: {
+        columns: ["日期", "访问用户", "下单用户", "下单率"],
+        rows: [
+          { 日期: "1/1", 访问用户: 1393, 下单用户: 1093, 下单率: 0.32 },
+          { 日期: "1/2", 访问用户: 3530, 下单用户: 3230, 下单率: 0.26 },
+          { 日期: "1/3", 访问用户: 2923, 下单用户: 2623, 下单率: 0.76 },
+          { 日期: "1/4", 访问用户: 1723, 下单用户: 1423, 下单率: 0.49 },
+          { 日期: "1/5", 访问用户: 3792, 下单用户: 3492, 下单率: 0.323 },
+          { 日期: "1/6", 访问用户: 4593, 下单用户: 4293, 下单率: 0.78 },
+        ],
+      },
+      user: {
+        avatar:
+          "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+        nickName: "admin",
+      },
+    };
+  },
+};
 </script>
 
 <style>
-.logo {
-  width: 300px;
-  height: 60px;
-  background: #17b3a3;
-  font-size: 22px;
-  line-height: 60px;
-  color: white;
-  font-weight: bolder;
+.el-container {
+  height: 100%;
 }
-
 .el-header {
-  background-color: #263238;
   color: #333;
   text-align: center;
   line-height: 60px;
-  border-left-width: 1px;
-  border-left-color: #e9eef3;
-  border-left-style: solid;
-  color: white;
+  background: #263238;
+  margin: 0;
+  padding: 0;
 }
-.el-page-header {
-  margin-left: 300px;
+.logo {
+  width: 200px;
+  font-weight: bold;
+  color: white;
+  background: #17b3a3;
 }
 
 .el-aside {
@@ -96,16 +114,12 @@ export default {};
   color: #333;
   text-align: center;
   line-height: 200px;
-  height: 100%;
-  position: absolute;
 }
 
 .el-main {
   background-color: white;
   height: 100%;
   color: black;
-  width: 1236px;
-  margin-left: 300px;
 }
 
 body > .el-container {
@@ -123,8 +137,5 @@ body > .el-container {
 .el-page-header {
   display: flex;
   line-height: 60px;
-}
-.mainBody{
-
 }
 </style>

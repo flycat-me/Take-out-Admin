@@ -10,17 +10,28 @@ const routes = [
     component: () => import('../views/login/login.vue')
   },
   {
-    path: '',
+    path: '/home',
     name: 'home',
     component: () => import('../views/Home/home.vue'),
-    redirect: 'home',
+    //redirect: 'home',
     children: [
       {
-        path: 'home',
-        component: () => import('../views/Home/home.vue')
+        path: '',
+        name: 'index',
+        component: () => import('../views/v-charts/index.vue')
+      },
+      {
+        path: 'test',
+        name: 'test',
+        component: () => import('../views/v-charts/test.vue')
       }
-
     ]
+  },
+  {
+    // 会匹配所有路径404
+    path: '*',
+    name: '404',
+    component: () => import('../views/notFound/404.vue')
   }
 
 ]

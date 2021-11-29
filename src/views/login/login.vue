@@ -44,7 +44,9 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-            this.$router.push("home")
+          this.$store.commit('set_login',true)
+          this.$store.commit('set_UserName',this.loginForm.name)
+          this.$router.push("home")
         } else {
           this.$message.error('请正确填写用户名和密码');
           return false;
