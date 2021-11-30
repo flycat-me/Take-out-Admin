@@ -5,7 +5,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/login',
     name: 'login',
     component: () => import('../views/login/login.vue')
   },
@@ -13,7 +13,6 @@ const routes = [
     path: '/home',
     name: 'home',
     component: () => import('../views/Home/home.vue'),
-    //redirect: 'home',
     children: [
       {
         path: '',
@@ -40,5 +39,7 @@ const router = new VueRouter({
   mode: 'history',//设置路由模式为history模式
   routes
 })
+
+
 
 export default router

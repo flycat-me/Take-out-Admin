@@ -1,36 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import * as getters from './modules/getters'
+import * as mutations from './modules/mutations'
+import * as actions from './modules/actions'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
+  //状态
   state: {
-    islogin: false,
-    username: null
+    currentUser: null,
+    isLogin: false,
+    token: ""
   },
-  mutations: {
-    set_login(state, islogin) {
-      state.islogin = islogin
-    },
-    set_UserName(state, username) {
-      state.username = username
-    }
-  },
-  actions: {
-    SET_login(context, islogin) {
-      context.commit('set_login',islogin)
-    },
-    set_UserName(context,username){
-      context.commit('set_UserName',username)
-    }
-  },
-  getters: {
-    getIsLogin(state) {
-      return state.islogin
-    },
-    getUserName(state){
-      return state.username;
-    }
-  }
+  getters,
+  mutations,
+  actions
 })
-export default store;
+
+export default store

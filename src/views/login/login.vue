@@ -44,8 +44,10 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$store.commit('set_login',true)
-          this.$store.commit('set_UserName',this.loginForm.name)
+          sessionStorage.setItem("userName",this.loginForm.name)
+          this.$store.dispatch("setUser",this.loginForm.name)
+
+          console.log(this.$store.state.isLogin)
           this.$router.push("home")
         } else {
           this.$message.error('请正确填写用户名和密码');

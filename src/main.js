@@ -6,10 +6,24 @@ import ElementUI from 'element-ui'
 import VCharts from 'v-charts-v2'
 import store from './store/index'
 
+
+router.beforeEach((to, from, next) => {
+
+  if(to.path == "/login"){
+    next()
+    return
+  }else if(!sessionStorage.getItem('userName')){
+    next("/login")
+  }else{
+    next()
+  }
+});
+
 Vue.use(ElementUI)
 Vue.use(VCharts)
 //Vue.use(router)
 Vue.config.productionTip = false
+
 
 new Vue({
   router,
