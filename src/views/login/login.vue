@@ -10,11 +10,19 @@
           label-width="80px"
           class="demo-ruleForm"
         >
-          <el-form-item label="用户名" prop="name">
-            <el-input type="text" prefix-icon="el-icon-user" v-model="loginForm.name"></el-input>
+          <el-form-item label="用户名" prop="username">
+            <el-input
+              type="text"
+              prefix-icon="el-icon-user"
+              v-model="loginForm.username"
+            ></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
-            <el-input type="password" prefix-icon="el-icon-lock" v-model="loginForm.password"></el-input>
+            <el-input
+              type="password"
+              prefix-icon="el-icon-lock"
+              v-model="loginForm.password"
+            ></el-input>
           </el-form-item>
           <el-button type="primary" @click="submitForm('loginForm')"
             >立即登录</el-button
@@ -26,17 +34,21 @@
 </template>
 
 <script>
+import request from "@/utils/request";
+import qs from "qs";
 export default {
   name: "login",
   data() {
     return {
       loginForm: {
-        name: "",
-        password: ""
+        username: "",
+        password: "",
       },
       loginrules: {
-        name: [{ required: true, message: "请输入用户名", trigger: "blur" }],
-        password: [{ required: true, message:"请输入密码",trigger: "blur"}]
+        username: [
+          { required: true, message: "请输入用户名", trigger: "blur" },
+        ],
+        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
       },
     };
   },
@@ -44,13 +56,18 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          sessionStorage.setItem("userName",this.loginForm.name)
-          this.$store.dispatch("setUser",this.loginForm.name)
-
-          console.log(this.$store.state.isLogin)
-          this.$router.push("home")
+          request.post("/login", qs.stringify(this.loginForm)).then((res) => {
+            let user = {
+              username: this.submitForm.username,
+              isLogin: true,
+              token: res.headers.authorization,
+            };
+            this.$store.dispatch("setUser", user);
+            sessionStorage.setItem("token", res.headers.authorization);
+            this.$router.push("/");
+          });
         } else {
-          this.$message.error('请正确填写用户名和密码');
+          this.$message.error("请正确填写用户名和密码");
           return false;
         }
       });

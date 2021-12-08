@@ -31,7 +31,7 @@
     </el-header>
     <el-container>
       <el-aside width="200px">
-        <el-menu
+        <!-- <el-menu
           default-active="2"
           class="el-menu-vertical-demo"
           background-color="#334157"
@@ -55,7 +55,8 @@
             <i class="el-icon-setting"></i>
             <span slot="title">导航四</span>
           </el-menu-item>
-        </el-menu>
+        </el-menu> -->
+        <Sidebar/>
       </el-aside>
       <el-main>
         <router-view />
@@ -65,7 +66,12 @@
 </template>
 
 <script>
+import Sidebar from '@/components/Sidebar.vue'
 export default {
+  
+  components: {
+    Sidebar
+  },
   data() {
     this.chartSettings = {};
     return {

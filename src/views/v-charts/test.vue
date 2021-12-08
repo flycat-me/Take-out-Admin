@@ -12,9 +12,11 @@ export default {
       if(this.$store.getters.getIsLogin){
         console.log("true");
         console.log(this.$store.getters.getIsLogin)
+        console.log(this.$route.path)
       }else{
         console.log("false");
         console.log(this.$store.getters.getIsLogin)
+        console.log(this.$route.path)
       }
     },
   },

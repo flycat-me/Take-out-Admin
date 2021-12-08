@@ -10,12 +10,11 @@ const routes = [
     component: () => import('../views/login/login.vue')
   },
   {
-    path: '/home',
-    name: 'home',
+    path: '/',
     component: () => import('../views/Home/home.vue'),
     children: [
       {
-        path: '',
+        path: '/',
         name: 'index',
         component: () => import('../views/v-charts/index.vue')
       },
@@ -23,6 +22,11 @@ const routes = [
         path: 'test',
         name: 'test',
         component: () => import('../views/v-charts/test.vue')
+      },
+      {
+        path: 'gettest',
+        name: 'gettest',
+        component: () => import('../views/test/getTest.vue')
       }
     ]
   },
