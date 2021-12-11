@@ -12,7 +12,7 @@ router.beforeEach((to, from, next) => {
   if(to.path == "/login"){
     next()
     return
-  }else if(!sessionStorage.getItem('userName')){
+  }else if(!sessionStorage.getItem('username')){
     next("/login")
   }else{
     next()

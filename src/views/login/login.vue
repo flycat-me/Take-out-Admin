@@ -34,8 +34,8 @@
 </template>
 
 <script>
-import request from "@/utils/request";
-import qs from "qs";
+// import request from "@/utils/request";
+// import qs from "qs";
 export default {
   name: "login",
   data() {
@@ -56,16 +56,17 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          request.post("/login", qs.stringify(this.loginForm)).then((res) => {
+          //request.post("/login", qs.stringify(this.loginForm)).then((res) => {
             let user = {
               username: this.submitForm.username,
               isLogin: true,
-              token: res.headers.authorization,
+              //token: res.headers.authorization,
             };
             this.$store.dispatch("setUser", user);
-            sessionStorage.setItem("token", res.headers.authorization);
+            sessionStorage.setItem("username",this.submitForm.username)
+            //sessionStorage.setItem("token", res.headers.authorization);
             this.$router.push("/");
-          });
+         // });
         } else {
           this.$message.error("请正确填写用户名和密码");
           return false;

@@ -1,8 +1,11 @@
 <template>
-<div>
-  <ve-line :data="chartData" :settings="chartSettings"></ve-line>
-</div>
-  
+  <div>
+    <el-breadcrumb separator-class="el-icon-arrow-right">
+      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item>数据可视化</el-breadcrumb-item>
+    </el-breadcrumb>
+    <ve-line :data="chartData" :settings="chartSettings"></ve-line>
+  </div>
 </template>
 
 <script>

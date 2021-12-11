@@ -1,61 +1,11 @@
 <template>
   <el-container>
     <el-header>
-      <div style="height: 60px; line-height: 60px; display: flex">
-        <div class="logo">后台管理</div>
-        <div style="flex: 1"></div>
-        <div style="width: 100px">
-          <el-dropdown>
-            <span class="el-dropdown-link">
-              <el-avatar
-                :size="30"
-                :src="user.avatar"
-                style="position: relative; top: 10px"
-              ></el-avatar>
-              {{ user.nickName }}
-              <i class="el-icon-arrow-down el-icon--right"></i>
-            </span>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item @click="$router.push('/person')"
-                  >个人信息</el-dropdown-item
-                >
-                <el-dropdown-item @click="$router.push('/login')"
-                  >退出系统</el-dropdown-item
-                >
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
-        </div>
-      </div>
+      <Header></Header>
     </el-header>
     <el-container>
       <el-aside width="200px">
-        <!-- <el-menu
-          default-active="2"
-          class="el-menu-vertical-demo"
-          background-color="#334157"
-          text-color="#fff"
-          active-text-color="#ffd04b"
-          router
-        >
-          <el-menu-item index="1">
-            <i class="el-icon-menu"></i>
-            <span slot="title">导航一</span>
-          </el-menu-item>
-          <el-menu-item index="home/test">
-            <i class="el-icon-menu"></i>
-            <span slot="title">导航二</span>
-          </el-menu-item>
-          <el-menu-item index="3" disabled>
-            <i class="el-icon-document"></i>
-            <span slot="title">导航三</span>
-          </el-menu-item>
-          <el-menu-item index="4">
-            <i class="el-icon-setting"></i>
-            <span slot="title">导航四</span>
-          </el-menu-item>
-        </el-menu> -->
+        <!--侧边导航栏-->
         <Sidebar/>
       </el-aside>
       <el-main>
@@ -67,10 +17,11 @@
 
 <script>
 import Sidebar from '@/components/Sidebar.vue'
+import Header from '@/components/Header.vue'
 export default {
   
   components: {
-    Sidebar
+    Sidebar,Header
   },
   data() {
     this.chartSettings = {};
@@ -104,16 +55,11 @@ export default {
   color: #333;
   text-align: center;
   line-height: 60px;
-  background: #263238;
+  background: #334157;
   margin: 0;
   padding: 0;
 }
-.logo {
-  width: 200px;
-  font-weight: bold;
-  color: white;
-  background: #17b3a3;
-}
+
 
 .el-aside {
   background-color: #263238;
@@ -126,6 +72,7 @@ export default {
   background-color: white;
   height: 100%;
   color: black;
+
 }
 
 body > .el-container {

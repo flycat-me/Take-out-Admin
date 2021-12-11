@@ -19,14 +19,29 @@ const routes = [
         component: () => import('../views/v-charts/index.vue')
       },
       {
-        path: 'test',
-        name: 'test',
-        component: () => import('../views/v-charts/test.vue')
+        path: 'addFoods',
+        name: 'addFoods',
+        component: () => import('../views/add/addFoods.vue')
       },
       {
-        path: 'gettest',
-        name: 'gettest',
-        component: () => import('../views/test/getTest.vue')
+        path: 'foodList',
+        name: 'foodList',
+        component: () => import('../views/list/foodList.vue')
+      },
+      {
+        path: 'orderList',
+        name: 'orderList',
+        component: () => import('../views/list/orderList.vue')
+      },
+      {
+        path: 'shopList',
+        name: 'shopList',
+        component: () => import('../views/list/shopList.vue')
+      },
+      {
+        path: 'userInfo',
+        name: 'userInfo',
+        component: () => import('../views/user/userInfo.vue')
       }
     ]
   },
