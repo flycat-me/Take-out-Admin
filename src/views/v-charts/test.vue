@@ -6,7 +6,11 @@
 </template>
 
 <script>
+import Main from "@/components/main.vue"
 export default {
+    components: {
+    Main
+  },
   methods: {
     increment() {
       if(this.$store.getters.getIsLogin){

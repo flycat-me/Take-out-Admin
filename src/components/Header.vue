@@ -13,23 +13,6 @@
       </el-button>
     </div>
     <div style="width: 100px">
-      <!-- <el-dropdown>
-        <span class="el-dropdown-link">
-          <el-avatar
-            :size="30"
-            :src="user.avatar"
-            style="position: relative; top: 10px"
-          ></el-avatar>
-          {{ user.nickName }}
-          <i class="el-icon-arrow-down el-icon--right"></i>
-        </span>
-        <el-dropdown-menu>
-          <el-dropdown-item @click="$router.push('/login')"
-            >个人信息</el-dropdown-item
-          >
-          <el-dropdown-item @click="logout()">退出系统</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown> -->
       <el-dropdown @command="handleCommand">
         <span class="el-dropdown-link">
           <el-avatar
@@ -59,18 +42,13 @@ export default {
       imgsq: require("../assets/img/sq.png"),
       // user: {},
       user: {
-        avatar:
-          "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+        avatar: require("../assets/img/loginUser.png"),
         nickName: "admin",
       },
     };
   },
   methods: {
     // 退出登录
-
-    logout() {
-      console.log("1412412412412");
-    },
     handleCommand(command) {
       if (command === "logout") {
         this.$confirm("退出登录, 是否继续?", "提示", {
@@ -80,7 +58,8 @@ export default {
         })
           .then(() => {
             setTimeout(() => {
-              //this.$store.commit("logout", "false");
+              //点击退出系统后将清除用户信息
+              sessionStorage.setItem("username","")
               this.$router.push({ path: "/login" });
               this.$message({
                 type: "success",
@@ -104,7 +83,6 @@ export default {
     // 切换显示
     toggle(showtype) {
       this.collapsed = !showtype;
-      this.$root.Bus.$emit("toggle", this.collapsed);
     },
   },
 };

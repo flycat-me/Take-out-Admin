@@ -42,7 +42,22 @@ const routes = [
         path: 'userInfo',
         name: 'userInfo',
         component: () => import('../views/user/userInfo.vue')
-      }
+      },
+      {
+        path: 'chartsIndex',
+        name: 'chartsIndex',
+        component: () => import('../views/v-charts/statistics.vue')
+      },
+      {
+        path: 'Oder',
+        name: 'Oder',
+        component: () => import('../views/info/Oder.vue')
+      },
+      {
+        path: 'backlog',
+        name: 'backlog',
+        component: () => import('../views/system/backlog.vue')
+      },
     ]
   },
   {
